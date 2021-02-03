@@ -17,14 +17,23 @@ def run_game(*, user_instance: User) -> None:
 
 
 def main():
-
     username: str = input("Tell me an unique username: ")
     full_name: str = input("Tell your full name: ")
-    difficulty_level: int = int(input("Tell me the difficulty level you wanna play: "))
-
     user: User = User(username=username, full_name=full_name)
-    user.difficulty_level = difficulty_level
 
+    keep_asking = True
+    while keep_asking:
+        try:
+            difficulty_level: int = int(input("Tell me the difficulty level you wanna play: "))
+            keep_asking = False
+            if difficulty_level <= 0:
+                print("The difficulty level is a positive integer!")
+                keep_asking = True
+        except ValueError as err:
+            print("The difficulty level is a positive integer!")
+    del keep_asking
+
+    user.difficulty_level = difficulty_level
     run_game(user_instance=user)
 
 

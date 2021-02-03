@@ -10,8 +10,7 @@ class UserInterface:
         operation, result = UserInterface.__operation_request(difficulty_level=difficulty_level)
 
         # Operation printing and user input
-        UserInterface.__operation_present(operation=operation)
-        user_answer = UserInterface.__answer_request()
+        user_answer = UserInterface.__answer_request(operation=operation)
 
         return {'operation': operation,
                 'result': result,
@@ -25,11 +24,22 @@ class UserInterface:
         return operation, result
 
     @staticmethod
-    def __operation_present(*, operation: str) -> None:
-        print(operation + " = ", end="")
+    def __answer_request(*, operation: str) -> int:
+        """Request the user to input the answer for the question."""
+        UserInterface.__operation_present(operation=operation)
+
+        keep_asking = True
+        while keep_asking:
+            try:
+                user_answer: int = int(input())
+                keep_asking = False
+            except ValueError:
+                print("Your answer should be an integer number!")
+                UserInterface.__operation_present(operation=operation)
+        del keep_asking
+
+        return user_answer
 
     @staticmethod
-    def __answer_request() -> int:
-        """Request the user to input the answer for the question."""
-        return int(input())
-
+    def __operation_present(*, operation: str) -> None:
+        print(operation + " = ", end="")

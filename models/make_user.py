@@ -3,8 +3,8 @@ class User:
     def __init__(self, *, username: str, full_name: str, difficulty_level: int = 1):
         if User.__user_already_exist(username):
             raise UserWarning
-        self.__username = username
-        self.__full_name = full_name
+        self.__username = username.lower()
+        self.__full_name = full_name.title()
         self.__difficulty_level = difficulty_level
         self.__answers_list: list[dict] = []
 
@@ -33,7 +33,8 @@ class User:
 
     @difficulty_level.setter
     def difficulty_level(self, difficulty_level):
-        self.__difficulty_level = difficulty_level
+        if type(difficulty_level) == int and difficulty_level > 0:
+            self.__difficulty_level = difficulty_level
 
     @staticmethod
     def __user_already_exist(username: str):

@@ -55,6 +55,9 @@ class MathOperations:
 
             del number1
 
+        if operation[0] == '+' or operation[0] == '-':
+            operation = [str(rd.randint(1, number_max)), *operation]
+
         operation = ' '.join(operation)
         return operation
 
