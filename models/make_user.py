@@ -22,8 +22,8 @@ class User:
 
     @property
     def score(self):
-        individual_score = [self.__difficulty_level**2 if answer.get('answered_correctly')
-                            else -self.__difficulty_level
+        individual_score = [answer.get('difficulty_level')**2 if answer.get('answered_correctly')
+                            else -answer.get('difficulty_level')
                             for answer in self.__answers_list]
         return sum(individual_score)
 
@@ -39,6 +39,20 @@ class User:
     @staticmethod
     def __user_already_exist(username: str):
         return False
+
+    @staticmethod
+    def ask_difficulty_level() -> int:
+        keep_asking = True
+        while keep_asking:
+            try:
+                difficulty_level: int = int(input("Tell me the difficulty level you wanna play: "))
+                keep_asking = False
+                if difficulty_level <= 0:
+                    print("The difficulty level is a positive integer!")
+                    keep_asking = True
+            except ValueError:
+                print("The difficulty level is a positive integer!")
+        return difficulty_level
 
     def answers_append(self, *, answer_to_append: dict) -> None:
         self.__answers_list.append(

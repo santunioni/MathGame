@@ -15,7 +15,8 @@ class UserInterface:
         return {'operation': operation,
                 'result': result,
                 'user_answer': user_answer,
-                'answered_correctly': result == user_answer}
+                'answered_correctly': result == user_answer,
+                'difficulty_level': difficulty_level}
 
     @staticmethod
     def __operation_request(*, difficulty_level: int) -> tuple[str, int]:
