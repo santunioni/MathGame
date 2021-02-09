@@ -38,7 +38,6 @@ class User_Tests(unittest.TestCase):
 
 class MathOperations_Tests(unittest.TestCase):
 
-    # @staticmethod
     def test_return_operation(self):
         operation, result = MathOperations.return_operation(difficulty_level=randint(1, 1999))
         self.assertEqual(type(operation), str)
@@ -48,11 +47,15 @@ class MathOperations_Tests(unittest.TestCase):
     def test_prime_check(self):
         self.assertTrue(MathOperations._MathOperations__prime_check(17))
         self.assertTrue(MathOperations._MathOperations__prime_check(19))
+        self.assertTrue(MathOperations._MathOperations__prime_check(2))
         self.assertFalse(MathOperations._MathOperations__prime_check(20))
+        self.assertFalse(MathOperations._MathOperations__prime_check(1))
+        self.assertFalse(MathOperations._MathOperations__prime_check(0))
 
     def test_dividers_from(self):
-        self.assertEqual(MathOperations._MathOperations__dividers_from(20), [2, 4, 5, 10])
-        self.assertEqual(MathOperations._MathOperations__dividers_from(17), [])
+        self.assertEqual(MathOperations._MathOperations__dividers_of(20), [2, 4, 5, 10])
+        self.assertEqual(MathOperations._MathOperations__dividers_of(17), [])
+        self.assertEqual(MathOperations._MathOperations__dividers_of(2), [])
 
 
 if __name__ == '__main__':

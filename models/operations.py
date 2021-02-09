@@ -39,7 +39,7 @@ class MathOperations:
             if basic_operation == "/":
                 while MathOperations.__prime_check(number1 := rd.randint(1, number_max)) or number1 == 1:
                     pass
-                number2 = rd.choice(MathOperations.__dividers_from(number1))
+                number2 = rd.choice(MathOperations.__dividers_of(number1))
                 if difficulty_level > 1:
                     operation.append(f"{rd.choice(['+', '-'])}")
                 operation.append(f"({number1} {basic_operation} {number2})")
@@ -76,7 +76,7 @@ class MathOperations:
         return pc.prime_check(number)
 
     @staticmethod
-    def __dividers_from(number: int) -> list[int]:
+    def __dividers_of(number: int) -> list[int]:
         prime_factors = pf.prime_factors(number)
         dividers = {
                     # The next line returns all numbers multiplied from a given permutation

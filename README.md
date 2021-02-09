@@ -12,8 +12,10 @@ We will develop an app to train young students with basic math operations. The a
 - [x] Check if the user answered correctly: Add points if correct and remove points if not.
 - [ ] The user should input the command quit to quit from the game anytime
 - [ ] Store the user answers and export when game is finished 
+- [ ] The code should be well documented.
 
 *(Marked boxes are already implemented.)*
 
 ---
 ## Issues
+

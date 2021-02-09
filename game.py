@@ -8,7 +8,7 @@ def run_game(*, user_instance: User) -> None:
     print(f"""Difficulty level set to {user_instance.difficulty_level} for user {user_instance.username}. \
 Starting the game ...""")
 
-    for i in range(10):
+    for _ in range(10):
         answer_to_append = UserInterface.new_question(difficulty_level=user_instance.difficulty_level)
         if answer_to_append.get('answered_correctly'):
             print("You got it right!", end="\n\n")
@@ -18,6 +18,8 @@ Starting the game ...""")
 
     print(user_instance.answers_list)
     print(f"Your score is {user_instance.score}")
+    
+    return None
 
 
 def main():

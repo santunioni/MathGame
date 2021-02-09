@@ -3,9 +3,9 @@ class User:
     def __init__(self, *, username: str, full_name: str, difficulty_level: int = 1):
         if User.__user_already_exist(username):
             raise UserWarning
-        self.__username = username.lower()
-        self.__full_name = full_name.title()
-        self.__difficulty_level = difficulty_level
+        self.__username: str = username.lower()
+        self.__full_name: str = full_name.title()
+        self.__difficulty_level: int = difficulty_level
         self.__answers_list: list[dict] = []
 
     @property
@@ -42,14 +42,14 @@ class User:
 
     @staticmethod
     def ask_difficulty_level() -> int:
-        keep_asking = True
-        while keep_asking:
+        ask_again = True
+        while ask_again:
             try:
                 difficulty_level: int = int(input("Tell me the difficulty level you wanna play: "))
-                keep_asking = False
+                ask_again = False
                 if difficulty_level <= 0:
                     print("The difficulty level is a positive integer!")
-                    keep_asking = True
+                    ask_again = True
             except ValueError:
                 print("The difficulty level is a positive integer!")
         return difficulty_level
